@@ -3,7 +3,16 @@ def main():
     text = get_book_text(book_path)
     num_words = get_num_words(text)
     num_characters = get_num_characters(text)
-    print(f"Number of unique characters: {num_characters}")
+
+ #Start of the report section
+    print(f"---Bookbot report of '{book_path}' file---")   
+    print(f"The document contains {num_words} words.")
+    print()
+    print("List of unique characters in the document:")
+    for key, value in num_characters.items():
+        print(f"The '{key}' character occurred {value} times.")
+    print(f"---End of the Bookbot report---")   
+#End of the report section
 
 def get_num_words(text):
     words = text.split()
@@ -17,9 +26,9 @@ def get_book_text(path):
 def get_num_characters(text):
     characters = {}
     lowered_string = text.lower()
-
     for char in lowered_string:
-        characters[char] = characters.get(char, 0) +1
+        if ord(char) >= 97 and ord(char) <= 122:
+            characters[char] = characters.get(char, 0) +1
     return characters
 
 main()
